@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>UP Land Converter</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#007BFF">
   <style>
@@ -23,7 +24,7 @@
       padding: 20px;
     }
     .container {
-      max-width: 480px;
+      max-width: 500px;
       width: 100%;
       background: white;
       padding: 25px;
@@ -36,10 +37,14 @@
       margin-bottom: 20px;
       color: #007BFF;
     }
+    h3 {
+      color: #444;
+      margin-top: 20px;
+    }
     label {
       font-weight: 600;
       display: block;
-      margin-top: 15px;
+      margin-top: 12px;
     }
     input {
       width: 100%;
@@ -50,7 +55,7 @@
       font-size: 15px;
     }
     button {
-      margin-top: 20px;
+      margin-top: 15px;
       width: 100%;
       padding: 12px;
       background: linear-gradient(90deg, #007BFF, #00C6FF);
@@ -67,7 +72,7 @@
       transform: scale(1.02);
     }
     .result {
-      margin-top: 25px;
+      margin-top: 20px;
       padding: 15px;
       background: #f1f9ff;
       border-radius: 10px;
@@ -91,8 +96,94 @@
   <div class="overlay">
     <div class="container">
       <h2>🌾 UP Land Converter</h2>
-      
+
       <!-- Bigha → Hectare -->
       <div class="section">
-        <h3>From Bigha/Biswa/Biswansi ➝ Hectare</h3>
-        <label>Bigh
+        <h3>Bigha/Biswa/Biswansi ➝ Hectare</h3>
+        <label>Bigha:</label>
+        <input type="number" id="bigha" value="0">
+        <label>Biswa:</label>
+        <input type="number" id="biswa" value="0">
+        <label>Biswansi:</label>
+        <input type="number" id="biswansi" value="0">
+        <button onclick="convertToHectare()">Convert</button>
+        <div class="result" id="hectareResult"></div>
+      </div>
+
+      <!-- Hectare → Bigha -->
+      <div class="section">
+        <h3>Hectare ➝ Bigha/Biswa/Biswansi</h3>
+        <label>Hectare:</label>
+        <input type="number" id="hectareInput" step="0.0001" value="0">
+        <button onclick="convertToBigha()">Convert</button>
+        <div class="result" id="bighaResult"></div>
+      </div>
+
+      <!-- Square Yard ↔ Hectare -->
+      <div class="section">
+        <h3>Square Yard ↔ Hectare</h3>
+        <label>Square Yards:</label>
+        <input type="number" id="sqyard" value="0">
+        <button onclick="sqyardToHectare()">To Hectare</button>
+
+        <label style="margin-top:15px;">Hectare:</label>
+        <input type="number" id="hectareSq" value="0">
+        <button onclick="hectareToSqyard()">To Sq Yards</button>
+        <div class="result" id="sqyardResult"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Conversion constants
+    const BIGHA_TO_HECTARE = 0.2529;
+    const BISWA_TO_HECTARE = BIGHA_TO_HECTARE / 20;
+    const BISWANSI_TO_HECTARE = BISWA_TO_HECTARE / 20;
+    const SQYARD_TO_HECTARE = 0.0000836;
+
+    // Bigha ➝ Hectare
+    function convertToHectare() {
+      let b = parseFloat(document.getElementById("bigha").value) || 0;
+      let bi = parseFloat(document.getElementById("biswa").value) || 0;
+      let bw = parseFloat(document.getElementById("biswansi").value) || 0;
+      let hectares = (b * BIGHA_TO_HECTARE) + (bi * BISWA_TO_HECTARE) + (bw * BISWANSI_TO_HECTARE);
+      let sqyards = hectares / SQYARD_TO_HECTARE;
+      document.getElementById("hectareResult").innerHTML =
+        `${hectares.toFixed(4)} ha<br>${sqyards.toFixed(2)} sq yards`;
+    }
+
+    // Hectare ➝ Bigha
+    function convertToBigha() {
+      let h = parseFloat(document.getElementById("hectareInput").value) || 0;
+      let totalBiswa = h / BISWA_TO_HECTARE;
+      let bigha = Math.floor(totalBiswa / 20);
+      let biswa = Math.floor(totalBiswa % 20);
+      let biswansi = Math.round((totalBiswa - (bigha*20 + biswa)) * 20);
+      document.getElementById("bighaResult").innerHTML =
+        `${bigha} Bigha ${biswa} Biswa ${biswansi} Biswansi`;
+    }
+
+    // Square Yard ➝ Hectare
+    function sqyardToHectare() {
+      let sq = parseFloat(document.getElementById("sqyard").value) || 0;
+      let hectares = sq * SQYARD_TO_HECTARE;
+      document.getElementById("sqyardResult").innerHTML =
+        `${hectares.toFixed(4)} ha`;
+    }
+
+    // Hectare ➝ Square Yard
+    function hectareToSqyard() {
+      let h = parseFloat(document.getElementById("hectareSq").value) || 0;
+      let sq = h / SQYARD_TO_HECTARE;
+      document.getElementById("sqyardResult").innerHTML =
+        `${sq.toFixed(2)} sq yards`;
+    }
+
+    // Register service worker
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("service-worker.js");
+    }
+  </script>
+</body>
+</html>
+
