@@ -1,7 +1,7 @@
 {
   "name": "UP Land Converter",
   "short_name": "LandConverter",
-  "start_url": "index.html",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#007BFF",
@@ -18,3 +18,4 @@
     }
   ]
 }
+
