@@ -1,279 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>UP Land Converter</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#007BFF">
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center center fixed;
-      background-size: cover;
-      color: #333;
-    }
-    .overlay {
-      background: rgba(0, 0, 0, 0.6);
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-    }
-    .container {
-      max-width: 500px;
-      width: 100%;
-      background: white;
-      padding: 25px;
-      border-radius: 18px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-      animation: fadeIn 0.8s ease;
-    }
-    h2 {
-      text-align: center;
-      margin-bottom: 20px;
-      color: #007BFF;
-    }
-    h3 {
-      color: #444;
-      margin-top: 20px;
-    }
-    label {
-      font-weight: 600;
-      display: block;
-      margin-top: 12px;
-    }
-    input {
-      width: 100%;
-      padding: 10px;
-      margin-top: 6px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      font-size: 15px;
-    }
-    button {
-      margin-top: 15px;
-      width: 100%;
-      padding: 12px;
-      background: linear-gradient(90deg, #007BFF, #00C6FF);
-      color: white;
-      border: none;
-      border-radius: 10px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s ease;
-    }
-    button:hover {
-      background: linear-gradient(90deg, #0056b3, #0096c7);
-      transform: scale(1.02);
-    }
-    .result {
-      margin-top: 20px;
-      padding: 15px;
-      background: #f1f9ff;
-      border-radius: 10px;
-      font-size: 17px;
-      text-align: center;
-      font-weight: bold;
-      color: #222;
-      line-height: 1.6;
-      box-shadow: inset 0 2px 6px rgba(0,0,0,0.1);
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .section {
-      margin-bottom: 30px;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>UP Land Converter</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#007BFF">
+<style>
+/* ... your existing CSS ... (unchanged) ... */
+</style>
 </head>
 <body>
-  <div class="overlay">
-    <div class="container">
-      <h2>🌾 UP Land Converter</h2>
+<div class="overlay">
+  <div class="container">
+    <h2>🌾 UP Land Converter</h2>
 
-      <!-- Bigha → Hectare -->
-      <div class="section">
-        <h3>Bigha/Biswa/Biswansi ➝ Hectare</h3>
-        <label>Bigha:</label>
-        <input type="number" id="bigha" value="0">
-        <label>Biswa:</label>
-        <input type="number" id="biswa" value="0">
-        <label>Biswansi:</label>
-        <input type="number" id="biswansi" value="0">
-        <button onclick="convertToHectare()">Convert</button>
-        <div class="result" id="hectareResult"></div>
-      </div>
-
-      <!-- Hectare → Bigha -->
-      <div class="section">
-        <h3>Hectare ➝ Bigha/Biswa/Biswansi</h3>
-        <label>Hectare:</label>
-        <input type="number" id="hectareInput" step="0.0001" value="0">
-        <button onclick="convertToBigha()">Convert</button>
-        <div class="result" id="bighaResult"></div>
-      </div>
-
-      <!-- Square Yard ↔ Hectare -->
-      <div class="section">
-        <h3>Square Yard ↔ Hectare</h3>
-        <label>Square Yards:</label>
-        <input type="number" id="sqyard" value="0">
-        <button onclick="sqyardToHectare()">To Hectare</button>
-
-        <label style="margin-top:15px;">Hectare:</label>
-        <input type="number" id="hectareSq" value="0">
-        <button onclick="hectareToSqyard()">To Sq Yards</button>
-        <div class="result" id="sqyardResult"></div>
-      </div>
+    <!-- Bigha → Hectare -->
+    <div class="section">
+      <h3>Bigha/Biswa/Biswansi ➝ Hectare</h3>
+      <label>Bigha:</label>
+      <input type="number" id="bigha" value="0">
+      <label>Biswa:</label>
+      <input type="number" id="biswa" value="0">
+      <label>Biswansi:</label>
+      <input type="number" id="biswansi" value="0">
+      <button onclick="convertToHectare()">Convert</button>
+      <div class="result" id="hectareResult"></div>
     </div>
-  </div>
-  <button id="info-btn" class="info-button">ℹ️</button>
 
-<div id="info-modal" class="info-modal">
-  <div class="info-content">
-    <span id="close-info" class="close">&times;</span>
-    <h2>About this App</h2>
-    <p>Land Area Converter</p>
-    <p>Made with ❤️ by <a href="https://instagram.com/deepaksinghanwal_ias" target="_blank">Deepak Singhanwal</a></p>
+    <!-- Hectare → Bigha -->
+    <div class="section">
+      <h3>Hectare ➝ Bigha/Biswa/Biswansi</h3>
+      <label>Hectare:</label>
+      <input type="number" id="hectareInput" step="0.0001" value="0">
+      <button onclick="convertToBigha()">Convert</button>
+      <div class="result" id="bighaResult"></div>
+    </div>
+
+    <!-- Square Yard ↔ Hectare -->
+    <div class="section">
+      <h3>Square Yard ↔ Hectare</h3>
+      <label>Square Yards:</label>
+      <input type="number" id="sqyard" value="0">
+      <button onclick="sqyardToHectare()">To Hectare</button>
+
+      <label style="margin-top:15px;">Hectare:</label>
+      <input type="number" id="hectareSq" value="0">
+      <button onclick="hectareToSqyard()">To Sq Yards</button>
+      <div class="result" id="sqyardResult"></div>
+    </div>
   </div>
 </div>
 
-  <script>
-    // Conversion constants
-    const BIGHA_TO_HECTARE = 0.2529;
-    const BISWA_TO_HECTARE = BIGHA_TO_HECTARE / 20;
-    const BISWANSI_TO_HECTARE = BISWA_TO_HECTARE / 20;
-    const SQYARD_TO_HECTARE = 0.0000836;
+<!-- Info Button, Modal, Footer -->
+<button id="info-btn" style="position: fixed; top:10px; right:10px; background:transparent; border:none; font-size:1.2rem; cursor:pointer; color:#888; opacity:0.6;">ℹ️</button>
 
-    // Bigha ➝ Hectare
-    function convertToHectare() {
-      let b = parseFloat(document.getElementById("bigha").value) || 0;
-      let bi = parseFloat(document.getElementById("biswa").value) || 0;
-      let bw = parseFloat(document.getElementById("biswansi").value) || 0;
-      let hectares = (b * BIGHA_TO_HECTARE) + (bi * BISWA_TO_HECTARE) + (bw * BISWANSI_TO_HECTARE);
-      let sqyards = hectares / SQYARD_TO_HECTARE;
-      document.getElementById("hectareResult").innerHTML =
-        `${hectares.toFixed(4)} ha<br>${sqyards.toFixed(2)} sq yards`;
-    }
-
-    // Hectare ➝ Bigha
-    function convertToBigha() {
-      let h = parseFloat(document.getElementById("hectareInput").value) || 0;
-      let totalBiswa = h / BISWA_TO_HECTARE;
-      let bigha = Math.floor(totalBiswa / 20);
-      let biswa = Math.floor(totalBiswa % 20);
-      let biswansi = Math.round((totalBiswa - (bigha*20 + biswa)) * 20);
-      document.getElementById("bighaResult").innerHTML =
-        `${bigha} Bigha ${biswa} Biswa ${biswansi} Biswansi`;
-    }
-
-    // Square Yard ➝ Hectare
-    function sqyardToHectare() {
-      let sq = parseFloat(document.getElementById("sqyard").value) || 0;
-      let hectares = sq * SQYARD_TO_HECTARE;
-      document.getElementById("sqyardResult").innerHTML =
-        `${hectares.toFixed(4)} ha`;
-    }
-
-    // Hectare ➝ Square Yard
-    function hectareToSqyard() {
-      let h = parseFloat(document.getElementById("hectareSq").value) || 0;
-      let sq = h / SQYARD_TO_HECTARE;
-      document.getElementById("sqyardResult").innerHTML =
-        `${sq.toFixed(2)} sq yards`;
-    }
-
-    // Register service worker
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("service-worker.js");
-    }
-<!-- Info Button -->
-<button id="info-btn" style="
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    background: transparent;
-    border: none;
-    font-size: 1.2rem;
-    cursor: pointer;
-    color: #888;
-    opacity: 0.6;
-">ℹ️</button>
-
-<!-- Info Modal -->
-<div id="info-modal" style="
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0; top: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.5);
-">
-  <div style="
-      background: #fff;
-      margin: 15% auto;
-      padding: 20px;
-      border-radius: 10px;
-      width: 80%;
-      max-width: 400px;
-      text-align: center;
-  ">
-    <span id="close-info" style="
-        float: right;
-        font-size: 1.5rem;
-        cursor: pointer;
-        color: #888;
-    ">&times;</span>
+<div id="info-modal" style="display:none; position:fixed; z-index:1000; left:0;top:0; width:100%; height:100%; background:rgba(0,0,0,0.5);">
+  <div style="background:#fff; margin:15% auto; padding:20px; border-radius:10px; width:80%; max-width:400px; text-align:center;">
+    <span id="close-info" style="float:right; font-size:1.5rem; cursor:pointer; color:#888;">&times;</span>
     <h2>About this App</h2>
     <p>Land Area Converter</p>
     <p>Made by <a href="https://instagram.com/deepaksinghanwal_ias" target="_blank">Deepak Singhanwal</a></p>
   </div>
 </div>
 
-<!-- Footer -->
-<footer style="
-    text-align: center;
-    font-size: 0.75rem;
-    color: #aaa;
-    padding: 10px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background: transparent;
-">
-  Made by <a href="https://instagram.com/deepaksinghanwal_ias" target="_blank" style="color: inherit; text-decoration: none; opacity: 0.7;">Deepak Singhanwal</a>
+<footer style="text-align:center; font-size:0.75rem; color:#aaa; padding:10px; position:fixed; bottom:0; width:100%; background:transparent;">
+Made by <a href="https://instagram.com/deepaksinghanwal_ias" target="_blank" style="color:inherit; text-decoration:none; opacity:0.7;">Deepak Singhanwal</a>
 </footer>
 
-<!-- Inline JS for modal -->
 <script>
-  const infoBtn = document.getElementById("info-btn");
-  const infoModal = document.getElementById("info-modal");
-  const closeInfo = document.getElementById("close-info");
+// Conversion constants
+const BIGHA_TO_HECTARE = 0.2529;
+const BISWA_TO_HECTARE = BIGHA_TO_HECTARE / 20;
+const BISWANSI_TO_HECTARE = BISWA_TO_HECTARE / 20;
+const SQYARD_TO_HECTARE = 0.0000836;
 
-  infoBtn.onclick = () => {
-    infoModal.style.display = "block";
-  };
+// Bigha ➝ Hectare
+function convertToHectare() {
+  let b = parseFloat(document.getElementById("bigha").value) || 0;
+  let bi = parseFloat(document.getElementById("biswa").value) || 0;
+  let bw = parseFloat(document.getElementById("biswansi").value) || 0;
+  let hectares = (b*BIGHA_TO_HECTARE) + (bi*BISWA_TO_HECTARE) + (bw*BISWANSI_TO_HECTARE);
+  let sqyards = hectares / SQYARD_TO_HECTARE;
+  document.getElementById("hectareResult").innerHTML = `${hectares.toFixed(4)} ha<br>${sqyards.toFixed(2)} sq yards`;
+}
 
-  closeInfo.onclick = () => {
-    infoModal.style.display = "none";
-  };
+// Hectare ➝ Bigha
+function convertToBigha() {
+  let h = parseFloat(document.getElementById("hectareInput").value) || 0;
+  let totalBiswa = h / BISWA_TO_HECTARE;
+  let bigha = Math.floor(totalBiswa / 20);
+  let biswa = Math.floor(totalBiswa % 20);
+  let biswansi = Math.round((totalBiswa - (bigha*20 + biswa)) * 20);
+  document.getElementById("bighaResult").innerHTML = `${bigha} Bigha ${biswa} Biswa ${biswansi} Biswansi`;
+}
 
-  window.onclick = (event) => {
-    if (event.target == infoModal) {
-      infoModal.style.display = "none";
-    }
-  };
+// Square Yard ➝ Hectare
+function sqyardToHectare() {
+  let sq = parseFloat(document.getElementById("sqyard").value) || 0;
+  let hectares = sq * SQYARD_TO_HECTARE;
+  document.getElementById("sqyardResult").innerHTML = `${hectares.toFixed(4)} ha`;
+}
+
+// Hectare ➝ Square Yard
+function hectareToSqyard() {
+  let h = parseFloat(document.getElementById("hectareSq").value) || 0;
+  let sq = h / SQYARD_TO_HECTARE;
+  document.getElementById("sqyardResult").innerHTML = `${sq.toFixed(2)} sq yards`;
+}
+
+// Register service worker
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("service-worker.js");
+}
+
+// Info modal logic
+const infoBtn = document.getElementById("info-btn");
+const infoModal = document.getElementById("info-modal");
+const closeInfo = document.getElementById("close-info");
+
+infoBtn.onclick = () => { infoModal.style.display = "block"; };
+closeInfo.onclick = () => { infoModal.style.display = "none"; };
+window.onclick = (event) => { if (event.target == infoModal) infoModal.style.display = "none"; };
 </script>
-
 
 </body>
 </html>
-
-
-
