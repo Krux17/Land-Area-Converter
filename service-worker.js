@@ -16,6 +16,24 @@ self.addEventListener("install", event => {
   );
   self.skipWaiting();
 });
+// Info modal handling
+const infoBtn = document.getElementById("info-btn");
+const infoModal = document.getElementById("info-modal");
+const closeInfo = document.getElementById("close-info");
+
+infoBtn.onclick = () => {
+    infoModal.style.display = "block";
+};
+
+closeInfo.onclick = () => {
+    infoModal.style.display = "none";
+};
+
+window.onclick = (event) => {
+    if (event.target == infoModal) {
+        infoModal.style.display = "none";
+    }
+};
 
 // Activate: clean old caches
 self.addEventListener("activate", event => {
@@ -38,3 +56,4 @@ self.addEventListener("fetch", event => {
     })
   );
 });
+
